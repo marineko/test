@@ -1,0 +1,252 @@
+/* =SharePoint Experts, Inc. - CSS for creating a responsive design for Seattle.master in SharePoint 2013 and SharePoint Online. 
+For more details see the related blog post at http://blog.sharepointexperience.com/2015/03/making-seattle-master-responsive
+
+-Copyright SharePoint Experts, Inc. and Heather Solomon. Distributed to the public for reference and educational purposes. Code may be used as long as this copyright message stays intact. 
+-sharepointexperience.com
+*/
+
+
+
+/* Font Awesome is a free font. http://fontawesome.io  
+Check for latest version at http://fontawesome.io/get-started 
+This should be moved to the top of your CSS file, irregardless of media queries */
+@import "//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css";
+@import "/sites/qa/Style%20Library/MeanMenu/meanmenu.css";
+@import "/sites/qa/Style%20Library/common.css";
+
+@media screen and (max-width: 1044px) {
+	/* Hide unnecessary page elements */
+	.ms-core-listMenu-horizontalBox .ms-listMenu-editLink  /* Global navigation "Edit Links" when managed navigation is in use */ {
+		display: none;
+	}
+
+	/* Undo the crazy that SharePoint creates with table display set to DIVs*/
+	#s4-titlerow .ms-table,
+	#s4-titlerow .ms-tableRow,
+	#s4-titlerow .ms-tableCell {
+		display: block;
+	}
+
+	/* Site logo wrapper */	
+	#siteIcon {
+		float: none;  /* Remove OOTB float - this allows title row elements to return to typical block elements along with the table display changes above */
+		text-align: left;  /* Alter OOTB alignment */
+	}
+
+	/* Page title text */
+	#pageTitle {
+		float: left;
+		word-wrap: break-word;
+		white-space: normal;
+	}
+	  
+  	/* Top nav bar size */
+	.ms-breadcrumb-box {
+		height: 30px;   /* Alter OOTB height */
+	}
+
+	/* Top nav bar placement & formatting */
+	.ms-breadcrumb-top > .ms-core-navigation {
+		display: block;  /* Force respect of some declarations */
+		margin-top: 20px;  /* Create space between the site logo/title and nav bar */
+	}
+  
+  	/* Search placement */
+	.ms-mpSearchBox.ms-floatRight,
+	#searchInputBox  {
+		/*float: right;  /* Remove OOTB float - this allows the search to move to the left under the top nav bar */
+	} 
+  
+  	/* Adjust padding for content containers */
+	#s4-bodyContainer {
+		padding-bottom: 60px;  /* Alter OOTB padding */
+	}
+  	#contentRow {
+		padding-top: 80px;  /* Alter OOTB padding */
+	}
+
+}
+
+@media screen and (max-width: 926px) {
+	
+  	#contentRow {
+		padding-top: 20px;  /* Alter OOTB padding */
+		float: left;
+	}
+
+/* --- Enterprise Wiki --- */
+	/* Content area wrapper, parent of col-fluid-1 and col-fluid-2 */
+	#contentBox {
+		min-width: inherit;   /* Reset OOTB min-width from fixed value to inherit which will take up the available space */
+	}
+
+	/* Alter right column on Enterprise Wiki default page */
+	.right-wp-zone-col {
+		float: none;  /* Remove OOTB float */
+	}
+
+	/* Sub content area wrappers, sibling to right-wp-zone-col */
+	.col-fluid-1,
+	.col-fluid-2 {
+		margin-right: 10px;  /* Alter OOTB margin */
+	}
+
+	
+/* --- Blog --- */
+	/* Reset min-widths on content containers */
+	#contentBox,
+	.ms-blog-MainArea {
+		min-width: inherit;   /* Reset OOTB min-width from fixed value to inherit which will take up the available space */
+	}
+
+	/* Table conversions so table cells will wrap */
+	.ms-blog-MainArea {
+		display: block;  /* Switch from a table display to a block level display, which forces other elements to be above or below */
+	}
+	.ms-blog-MainArea td:first-child, 
+	.ms-blog-LeftColumn {
+		display: inline-block;  /* Switch from a table cell display to an inline block level display, which allows other elements to be to the right or left */
+		width: auto;
+	}
+
+
+/* --- Team Site --- */
+	/* Reset min-widths on content container */
+	#contentBox {
+		min-width: inherit;   /* Reset OOTB min-width from fixed value to inherit which will take up the available space */
+	}
+
+	/* Table conversions so table cells will wrap */
+	#layoutsTable, .ms-listviewtable {
+		display: block;  /* Switch from a table display to a block level display, which forces other elements to be above or below */
+	}
+
+	#layoutsTable td, .ms-listviewtable td, .ms-listviewtable th {
+		display: inline-block;   /* Switch from a table cell display to an inline block level display, which allows other elements to be to the right or left */
+		word-wrap: break-word;
+		white-space: normal;
+		height: auto;
+	}
+
+	/* Right side table cell */
+	.ms-wiki-columnSpacing {
+		padding-left: 0;  /* Alter OOTB padding */
+	}
+}
+
+@media screen and (max-width: 740px) {
+
+    #contentRow{
+    	display: flex;
+    	flex-direction: column;
+    	width: 100%;
+    }
+
+	/* Reset the margin of the content area */
+	#contentBox {
+		margin-left: 10px;
+		order: 1;
+	}
+
+	/* Remove the content area border */
+	.right-wp-zone-col {
+		border: 0;
+	}
+
+	/* Search placement */
+	.ms-mpSearchBox.ms-floatRight,
+	#searchInputBox  {
+		width: 100%;
+		float: left;  /* Remove OOTB float - this allows the search to move to the left under the top nav bar */
+	}
+
+	#sideNavBox {
+		order: 2;
+		font-size: 1.2em;
+		float: none;  /* Remove OOTB float so content appears beneath the nav */
+		border: 1px solid #999;  /* Bounding box */
+		border-radius: 5px;  /* Rounded corners */
+		padding: 5px 10px;  /* Add padding to space content from border */
+		/*margin-bottom: 15px;  /* Create space between left nav and content underneath */
+		margin: 10px auto;
+		width: 85%;
+	}
+	.ms-core-sideNavBox-removeLeftMargin {
+		margin-left: 0;  /* Alter OOTB margin */
+	}
+	#sideNavBox .ms-core-listMenu-item {
+		/*padding: 3px 10px;  /* Alter OOTB padding */
+	}
+
+	/* Add header text */
+	#sideNavBox:before {
+		content: "リンク:";  /* Header text */
+		padding-bottom: 7px;  /* Space out text from horizontal rule  */
+		display: block;  /* Required for padding to work */
+		border-bottom: 1px solid #999;  /* Horizontal rule */
+	}
+
+}
+
+@media screen and (max-width: 480px) {
+	body {
+		font-size: 18px;
+	}
+
+	.ms-srch-sb > input {
+		height: 30px;
+		min-width: 300px;
+		font-size: 18px;
+	}
+
+	#s4-bodyContainer {
+  		float: left;
+  		width: 100%;
+	}
+
+	#contentRow {
+		padding-top: 0px;  /* Alter OOTB padding */
+	}
+
+	#s4-ribbonrow {
+		display: none;
+	}
+
+	#suiteBarLeft {
+		display: none;
+	}
+/*
+	#ms-designer-ribbon {
+		overflow: hidden;
+	}
+*/
+	#suiteBar, #suiteBarRight {
+		float: left;
+		display: block;
+		width: 100%;
+	}
+
+	#suiteBarRight{
+		text-align: right;
+	}
+
+}
+
+@media screen and (max-width: 360px) {
+	/* Hide right side of Suite Bar links */
+	.ms-core-deltaSuiteLinks {
+		display: none;
+	}
+
+	.ms-srch-sb>input {
+		min-width: 200px;
+	}
+}*/
+
+
+
+
+/* 
+SharePoint Experts, Inc. 
+sharepointexperience.com
+*/
